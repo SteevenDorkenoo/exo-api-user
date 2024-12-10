@@ -1,3 +1,28 @@
-#index:
+# index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+# Route pour lister tous les utilisateurs
+user_list:
+  path: /api/users
+  controller: App\Controller\UserController::allUser
+  methods: [GET]
+# Route pour afficher un utilisateur spécifique
+user_show:
+  path: /api/users/{id}
+  controller: App\Controller\UserController::show
+  methods: GET
+# Route pour créer un utilisateur
+user_create:
+  path: /api/users
+  controller: App\Controller\UserController::create
+  methods: POST
+# Route pour mettre à jour un utilisateur
+user_update:
+  path: /api/users/{id}
+  controller: App\Controller\UserController::update
+  methods: PUT
+# Route pour supprimer un utilisateur
+user_delete:
+  path: /api/users/{id}
+  controller: App\Controller\UserController::delete
+  methods: DELETE

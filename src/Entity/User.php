@@ -23,8 +23,8 @@ class User
     #[ORM\Column(length: 255)]
     private ?string $password = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $roles = null;
+    #[ORM\Column(type: 'json')]
+    private array $roles = [];
 
     public function getId(): ?int
     {
@@ -67,15 +67,16 @@ class User
         return $this;
     }
 
-    public function getRoles(): ?string
+    public function getRoles(): array
     {
-        return $this->roles;
+        $roles = $this->roles;
+        $roles[] = 'ROLE_USER';
+        return array_unique($roles);
     }
 
-    public function setRoles(string $roles): static
+    public function setRoles(string $roles): self
     {
         $this->roles = $roles;
-
         return $this;
     }
 }
