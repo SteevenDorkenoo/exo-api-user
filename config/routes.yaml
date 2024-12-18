@@ -10,19 +10,19 @@ user_list:
 user_show:
   path: /api/users/{id}
   controller: App\Controller\UserController::show
-  methods: GET
+  methods: [GET]
 # Route pour créer un utilisateur
 user_create:
   path: /api/users
   controller: App\Controller\UserController::create
-  methods: POST
+  methods: [POST]
 # Route pour mettre à jour un utilisateur
 user_update:
   path: /api/users/{id}
   controller: App\Controller\UserController::update
-  methods: PUT
+  methods: [PUT]
 # Route pour supprimer un utilisateur
 user_delete:
   path: /api/users/{id}
   controller: App\Controller\UserController::delete
-  methods: DELETE
+  methods: [DELETE]

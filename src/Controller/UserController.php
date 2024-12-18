@@ -11,6 +11,7 @@ use App\Entity\User;
 use App\Repository\UserRepository;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
+
 class UserController extends AbstractController
 {
     #[Route('/user', name: 'app_user')]
@@ -35,23 +36,28 @@ class UserController extends AbstractController
             ];
         }, $users);
 
+        return new JsonResponse($data, JsonResponse::HTTP_OK);
+    }
+
+    // public function show(User $user): JsonResponse
+    // {
+    //     $data = [
+    //         'id' => $user->getId(),
+    //         'username' => $user->getUsername(),
+    //         'email' => $user->getEmail(),
+    //         'roles' => $user->getRoles()
+    //     ];
+    //     return new JsonResponse($data, JsonResponse::HTTP_OK);
+    // }
+
+    public function show(int $id, EntityManagerInterface $em): Jsonresponse
+    {
+        $data = $em->getRepository(User::class)->find($id);
 
         return new JsonResponse($data, JsonResponse::HTTP_OK);
     }
 
-    public function show(User $user): JsonResponse
-    {
-        $data = [
-            'id' => $user->getId(),
-            'username' => $user->getUsername(),
-            'email' => $user->getEmail(),
-            'roles' => $user->getRoles()
-        ];
-
-        return new JsonResponse($data, JsonRespone::HTTP_OK);
-    }
-
-    public function create(Request $request, EntityManagerInterface $em): Jsonresponse
+    public function create(Request $request, EntityManagerInterface $em): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
 
@@ -69,7 +75,7 @@ class UserController extends AbstractController
 
     public function update(Request $request, User $user, EntityManagerInterface $em): JsonResponse
     {
-        $data = json_decode($request->getContet(), true);
+        $data = json_decode($request->getContent(), true);
 
         if(isset($data['Username'])){
             $user->setUsername($data['Username']);
@@ -95,6 +101,4 @@ class UserController extends AbstractController
 
         return new JsonResponse(['status' => 'User deleted'],JsonResponse::HTTP_OK);
     }
-
-
 }
