@@ -41,12 +41,12 @@ class UserController extends AbstractController
 
     // public function show(User $user): JsonResponse
     // {
-    //     $data = [
-    //         'id' => $user->getId(),
-    //         'username' => $user->getUsername(),
-    //         'email' => $user->getEmail(),
-    //         'roles' => $user->getRoles()
-    //     ];
+        // $data = [
+        //     'id' => $user->getId(),
+        //     'username' => $user->getUsername(),
+        //     'email' => $user->getEmail(),
+        //     'roles' => $user->getRoles()
+        // ];
     //     return new JsonResponse($data, JsonResponse::HTTP_OK);
     // }
 
