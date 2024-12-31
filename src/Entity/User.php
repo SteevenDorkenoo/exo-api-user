@@ -4,12 +4,14 @@ namespace App\Entity;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 class User implements PasswordAuthenticatedUserInterface, UserInterface
 {
     #[ORM\Id]
@@ -77,11 +79,11 @@ class User implements PasswordAuthenticatedUserInterface, UserInterface
         return array_unique($roles);
     }
 
-    public function setRoles(string $roles): self
-    {
-        $this->roles = $roles;
-        return $this;
+    public function setRoles(array $roles): self { 
+        $this->roles = $roles; // On assigne les rôles passés en argument à la propriété $roles
+        return $this; 
     }
+    
     /**
      * The public representation of the user (e.g. a username, an email address, etc.)
      *

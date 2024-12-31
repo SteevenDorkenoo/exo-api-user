@@ -29,7 +29,7 @@ security:
             logout:  # Gestion de la déconnexion
                 path: app_logout  # La route pour se déconnecter
                 # where to redirect after logout
-                target: app_any_route
+                target: app_login
 
         # # Configuration pour les API (commentée ici, mais peut être activée si nécessaire pour les connexions API basées sur JSON ou JWT)
         # api_login:
